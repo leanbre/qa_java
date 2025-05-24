@@ -1,49 +1,37 @@
-
-
 import com.example.Feline;
 import com.example.Lion;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mock;
-
-import static org.junit.Assert.*;
-import static org.mockito.MockitoAnnotations.initMocks;
-
+import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class LionParameterizedTest {
-    private final String sex;
+public class LionParametrizedTest {
     private final boolean hasMane;
-    private Lion lion;
+    private final String sex;
 
     @Mock
     Feline feline;
 
-    public LionParameterizedTest(String sex, boolean hasMane) {
-        this.sex = sex;
+    public LionParametrizedTest(String sex, boolean hasMane) {
         this.hasMane = hasMane;
+        this.sex = sex;
     }
 
-    @Parameterized.Parameters(name = "sex = {0}, hasMane = {1}")
+    @Parameterized.Parameters(name = "пол = {0}, есть грива = {1}")
     public static Object[][] data() {
         return new Object[][] {
+                {"Самка", false},
                 {"Самец", true},
-                {"Самка", false}
         };
     }
 
-    @Before
-    public void setUp() throws Exception {
-        initMocks(this);
-        lion = new Lion(sex, feline);
-    }
 
     @Test
-    public void doesHaveManeTest() {
-        boolean expected = hasMane;
+    public void hasManeTest() throws Exception {
+        Lion lion = new Lion(this.sex, feline);
         boolean actual = lion.doesHaveMane();
-        assertEquals("Метод doesHaveMane() класса Lion вернул некорректное значение", expected, actual);
+        assertEquals(this.hasMane, actual);
     }
 }
