@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -29,7 +28,7 @@ public class CatTest {
     @Test
     public void getFoodTest() throws Exception {
         Cat cat = new Cat(feline);
-        List<String> expectedProducts = Arrays.asList("Рыба", "Мясо");
+        List<String> expectedProducts = List.of("Животные", "Птицы", "Рыба");
 
         when(feline.eatMeat()).thenReturn(expectedProducts);
 

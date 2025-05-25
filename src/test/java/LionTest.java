@@ -7,7 +7,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -34,7 +33,7 @@ public class LionTest {
 
     @Test
     public void getFoodTest() throws Exception {
-        List<String> expectedProducts = Arrays.asList("Рыба", "Мясо");
+        List<String> expectedProducts = List.of("Животные", "Птицы", "Рыба");
 
         when(feline.getFood("Хищник")).thenReturn(expectedProducts);
 
